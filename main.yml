@@ -1,0 +1,25 @@
+name: Build and Run Space Shooter
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Install SFML Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libsfml-dev
+    
+    - name: Build and Run Space Shooter
+      run: |
+        g++ -c main.cpp
+        g++ main.o -o sfml-app -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
+        ./sfml-app
