@@ -21,7 +21,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y libsfml-dev
     
-    - name: Build Space Shooter
+    - name: Build Space Shooter Game
       run: |
         g++ -c main.cpp
         g++ main.o -o sfml-app -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
