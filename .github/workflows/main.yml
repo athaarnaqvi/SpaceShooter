@@ -11,31 +11,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: Print Working Directory
-        run: |
-          pwd
-          ls
-        
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Build Essentials
+        run: sudo apt-get update && sudo apt-get install -y build-essential
+
       - name: Install SFML Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y libsfml-dev
-          
-      - name: making random file
-        run: |
-          touch file123.txt
-    
 
-      - name: Build Space Shooter Game
-        run: |
-          ls
-          g++ -c main.cpp
-          g++ main.o -o sfml-app -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
-        working-directory: ${{ github.workspace }}
+      - name: Compile Space Shooter Game
+        run: g++ -c main.cpp
 
+      - name: Link and Build Space Shooter
+        run: g++ main.o -o sfml-app -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 
       - name: Run Space Shooter
         run: ./sfml-app
-
