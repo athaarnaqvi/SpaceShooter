@@ -11,25 +11,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    steps:
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: 16
 
-    - name: Checkout code
-      uses: actions/checkout@v2
-      
-    - name: Install SFML Dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y libsfml-dev
-    
-    - name: Build Space Shooter Game
-      run: |
-        g++ -c main.cpp
-        g++ main.o -o sfml-app -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
-    
-    - name: Run Space Shooter
-      run: ./sfml-app
+    steps:
+      - name: Install SFML Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libsfml-dev
+
+      - name: Build Space Shooter Game
+        run: |
+          g++ -c main.cpp
+          g++ main.o -o sfml-app -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
+
+      - name: Run Space Shooter
+        run: ./sfml-app
+
