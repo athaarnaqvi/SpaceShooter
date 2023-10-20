@@ -30,5 +30,4 @@ jobs:
       - name: Link and Build Space Shooter
         run: g++ main.o -o sfml-app -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 
-      - name: Run Space Shooter
-        run: ./sfml-app
+      
