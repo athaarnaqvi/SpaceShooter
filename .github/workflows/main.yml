@@ -11,8 +11,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
+      - name: Print Working Directory
+        run: pwd
+        
       - name: Install SFML Dependencies
         run: |
           sudo apt-get update
@@ -22,6 +25,8 @@ jobs:
         run: |
           g++ -c main.cpp
           g++ main.o -o sfml-app -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
+        working-directory: ${{ github.workspace }}
+
 
       - name: Run Space Shooter
         run: ./sfml-app
